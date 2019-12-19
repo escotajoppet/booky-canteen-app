@@ -1,0 +1,27 @@
+<p id="notice"><%= notice %></p>
+
+<h1>Orders</h1>
+
+<% @orders.each do |order_details| %>
+  <h3><%= order_details[:time] %></h3>
+
+  <table>
+    <thead>
+      <tr>
+        <th>Dish</th>
+        <th>Total Price</th>
+        <th>Total Quantity</th>
+      </tr>
+    </thead>
+
+    <tbody>
+      <% order_details[:orders].each do |order| %>
+        <tr>
+          <td><%= order.dishes.first.try(:name) %></td>
+          <td><%= order.price %></td>
+          <td><%= order.quantity %></td>
+        </tr>
+      <% end %>
+    </tbody>
+  </table>
+<% end %>

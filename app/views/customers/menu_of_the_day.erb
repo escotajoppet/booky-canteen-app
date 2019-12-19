@@ -1,0 +1,50 @@
+<p id="notice"><%= notice %></p>
+
+<h1>Menu of the Day</h1>
+
+<table >
+  <thead>
+    <tr>
+      <th>Name</th>
+      <th>Price</th>
+      <th></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @dishes.each do |dish| %>
+      <tr data-id="<%= dish.id %>">
+        <td><%= dish.name %></td>
+        <td><%= dish.price %></td>
+        <td>
+          <%= link_to '+', '#', data: { id: dish.id, name: dish.name, price: dish.price }, class: 'add-dish' %>
+
+        </td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<h1>Orders</h1>
+
+<table class="orders">
+  <thead>
+    <tr>
+      <th>Name</th>
+      <th>Price</th>
+      <th>Quantity</th>
+      <th></th>
+    </tr>
+  </thead>
+
+  <tbody>
+  </tbody>
+</table>
+
+<input type="text" id="timepicker" readonly>
+
+<button class="checkout">Checkout</button>
+
+<script>
+  var customerId = <%= raw session[:customer_id] %>
+</script>

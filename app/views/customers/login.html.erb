@@ -1,0 +1,12 @@
+<h1>Welcome to Canteen App</h1>
+
+<%= form_tag(customers_path, method: :post) do %>
+  <div class="field">
+    <%= label_tag :email %>
+    <%= text_field_tag :email %>
+  </div>
+
+  <div class="actions">
+    <%= submit_tag 'View Menus' %>
+  </div>
+<% end %>

@@ -1,0 +1,35 @@
+<%= form_for(menu) do |f| %>
+  <% if menu.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(menu.errors.count, "error") %> prohibited this menu from being saved:</h2>
+
+      <ul>
+      <% menu.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="field">
+    <%= f.label :name %>
+    <%= f.text_field :name %>
+  </div>
+
+  <div class="field">
+    <%= label_tag :dishes %>
+    <select class="dishes" name="dishes[]" multiple="multiple">
+      <%= @available_dishes.each do |dish| %>
+        <option value="<%= dish.id %>"><%= dish.name %></option>
+      <% end %>
+    </select>
+  </div>
+
+  <div class="actions">
+    <%= f.submit %>
+  </div>
+<% end %>
+
+<script>
+  var dishes = <%= raw @dishes.to_json %>
+</script>

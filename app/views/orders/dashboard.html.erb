@@ -1,0 +1,32 @@
+<p id="notice"><%= notice %></p>
+
+<h1>Orders Dashboard</h1>
+
+<% @customers.each do |customer| %>
+  <h3><%= customer.email %></h3>
+
+  <% times = customer.orders.pluck(:time).uniq %>
+
+  <% times.each do |time| %>
+    <h4><%= time %></h4>
+    <table>
+      <thead>
+        <tr>
+          <th>Dish</th>
+          <th>Total Price</th>
+          <th>Total Quantity</th>
+        </tr>
+      </thead>
+
+      <tbody>
+        <% customer.orders.where(time: time).each do |order| %>
+          <tr>
+            <td><%= order.dishes.first.try(:name) %></td>
+            <td><%= order.price %></td>
+            <td><%= order.quantity %></td>
+          </tr>
+        <% end %>
+      </tbody>
+    </table>
+  <% end %>
+<% end %>
